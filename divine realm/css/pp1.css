@@ -1,0 +1,151 @@
+/* ==============================
+   Divine Realm - Puranas Page
+   Clean & Elegant Grid Interface
+   ============================== */
+
+/* Reset defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Body */
+body {
+  background-color: #f5f4ef;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* Header */
+.header {
+  padding: 20px 40px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  position: relative;
+}
+
+/* Decorative lines above and below */
+.header::before,
+.header::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: #bfa56a; /* subtle golden */
+  margin: 10px auto;
+  border-radius: 2px;
+}
+
+/* Header title */
+.header h1 {
+  font-size: 2.2rem;
+  color: #3a2f0b; /* dark brown */
+  font-weight: 700;
+  margin: 10px 0;
+  position: relative;
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 10px;
+  background: rgba(255, 250, 240, 0.6); /* subtle highlight */
+  box-shadow: 0 4px 10px rgba(191, 165, 106, 0.2); /* gentle golden shadow */
+  text-shadow: 1px 1px 2px rgba(191, 165, 106, 0.5); /* soft text glow */
+  transition: transform 0.3s ease;
+}
+
+.header h1:hover {
+  transform: scale(1.05);
+}
+
+/* Puranas Section */
+.puranas-section {
+  padding: 50px 20px;
+}
+
+/* Grid container for cards */
+.puranas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Individual Card */
+.purana-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Card image */
+.purana-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Card title */
+.purana-card h2 {
+  font-size: 1rem;
+  padding: 15px 0;
+  margin: 0;
+  color: #3a2f0b;
+  text-align: center;
+  font-weight: 600;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  border-radius: 5px;
+}
+
+/* Card hover effects */
+.purana-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  background-color: #fdf7e3; /* soft golden highlight */
+}
+
+.purana-card:hover h2 {
+  color: #bfa56a; /* subtle golden for name */
+}
+
+.purana-card:hover img {
+  transform: scale(1.03); /* gentle zoom */
+}
+
+/* Smooth scroll reveal */
+.purana-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+}
+
+.purana-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .puranas-container {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    text-align: center;
+    padding: 15px;
+  }
+  .header h1 {
+    font-size: 1.8rem;
+  }
+}

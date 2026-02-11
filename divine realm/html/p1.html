@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divine Realm - Login</title>
+  <link rel="stylesheet" href="../css/p1.css">
+</head>
+<body class="divine-bg">
+
+  <div class="container">
+    <h1>🕉 Divine Realm</h1>
+
+    <h2>Login / Signup</h2>
+
+    <input type="text" id="name" placeholder="Enter Name (for signup)">
+    <input type="email" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button onclick="signup()">Sign Up</button>
+    <button onclick="login()">Login</button>
+    <button onclick="googleLogin()">Login with Google</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAs9decALsnbNFjLXKvWYgv4ZlYknXvCHI",
+      authDomain: "divine-realm-d2f94.firebaseapp.com",
+      projectId: "divine-realm-d2f94",
+      storageBucket: "divine-realm-d2f94.appspot.com",
+      messagingSenderId: "479159885364",
+      appId: "1:479159885364:web:d51c75945b54d0cbb4f461"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // ✅ SIGNUP
+    window.signup = async function() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if(!name || !email || !password) return alert("All fields are required!");
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await setDoc(doc(db, "users", user.uid), {
+          name: name,
+          email: email,
+          role: "user"
+        });
+
+        alert("Signup Successful!");
+        window.location.href = "h1.html"; // Redirect after signup
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    // ✅ LOGIN
+    window.login = async function() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if(!email || !password) return alert("Email and Password required!");
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Login Successful!");
+        window.location.href = "h1.html"; // Redirect after login
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    // ✅ GOOGLE LOGIN
+    window.googleLogin = async function() {
+      const provider = new GoogleAuthProvider();
+
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        await setDoc(doc(db, "users", user.uid), {
+          name: user.displayName,
+          email: user.email,
+          role: "user"
+        });
+
+        alert("Google Login Successful!");
+        window.location.href = "h1.html"; // Redirect after Google login
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+  </script>
+
+</body>
+</html>

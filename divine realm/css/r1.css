@@ -1,0 +1,139 @@
+/* Reset defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body background and general smooth font */
+body.divine-bg {
+  background: linear-gradient(135deg, #fefefe, #f3e8e0);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+/* Container for the register card */
+.container {
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+/* Slight lift on hover */
+.container:hover {
+  transform: translateY(-3px);
+}
+
+/* Logo */
+.logo {
+  font-size: 2rem;
+  color: #8B4513; /* deep brownish-golden */
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+/* Form styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input group */
+.form-group {
+  text-align: left;
+}
+
+/* Labels */
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Inputs */
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input focus effect - subtle */
+.form-group input:focus {
+  border-color: #bfa56a; /* soft golden */
+  outline: none;
+  box-shadow: 0 0 8px rgba(191, 165, 106, 0.2);
+}
+
+/* Register button */
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 12px 0;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #bfa56a; /* soft golden */
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Subtle hover effect */
+.btn:hover {
+  background-color: #a78f50;
+}
+
+/* Redirect text */
+.redirect {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.redirect a {
+  color: #bfa56a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.redirect a:hover {
+  color: #a78f50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .container {
+    padding: 30px 20px;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+}

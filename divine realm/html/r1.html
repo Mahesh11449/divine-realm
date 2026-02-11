@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divine Realm - Register</title>
+  <link rel="stylesheet" href="../css/r1.css">
+  <script defer src="../js/r1.js"></script>
+</head>
+<body class="divine-bg">
+  <div class="container">
+    <header>
+      <h1 class="logo">🕉 Divine Realm</h1>
+    </header>
+
+    <h2 class="subtitle">Create Your Account</h2>
+
+    <form id="registerForm" class="form">
+      <div class="form-group">
+        <label for="regName">Full Name</label>
+        <input type="text" id="regName" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="regEmail">Email</label>
+        <input type="email" id="regEmail" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword">Password</label>
+        <input type="password" id="regPassword" placeholder="Enter your password" required minlength="6">
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm your password" required minlength="6">
+      </div>
+
+      <button type="submit" class="btn">Register</button>
+      <p class="redirect">Already have an account? <a href="p1.html">Login Here</a></p>
+    </form>
+  </div>
+</body>
+</html>

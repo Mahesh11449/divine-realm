@@ -1,0 +1,118 @@
+/* Reset some defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body background and center */
+body.divine-bg {
+  background: linear-gradient(135deg, #fefefe, #f3e8e0);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+/* Container for login/signup card */
+.container {
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-3px);
+}
+
+/* Logo */
+.container h1 {
+  font-size: 2rem;
+  color: #8B4513; /* deep brownish-golden */
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Subtitle / heading */
+.container h2 {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+/* Input fields */
+.container input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container input:focus {
+  border-color: #bfa56a; /* soft golden */
+  outline: none;
+  box-shadow: 0 0 8px rgba(191, 165, 106, 0.2);
+}
+
+/* Buttons */
+.container button {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background-color: #bfa56a; /* soft golden */
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container button:hover {
+  background-color: #a78f50;
+}
+
+/* Optional: small text / redirect */
+.redirect {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.redirect a {
+  color: #bfa56a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.redirect a:hover {
+  color: #a78f50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 450px) {
+  .container {
+    padding: 30px 20px;
+  }
+
+  .container h1 {
+    font-size: 1.8rem;
+  }
+
+  .container h2 {
+    font-size: 1rem;
+  }
+}

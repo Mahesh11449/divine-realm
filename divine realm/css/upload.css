@@ -1,0 +1,140 @@
+/* Divine Realm - Upload Page */
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f4ef;
+  color: #222;
+}
+
+/* Header */
+.header {
+  background-color: #fafafa;
+  text-align: center;
+  padding: 30px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.header h1 {
+  margin: 0;
+  color: #3a2f0b;
+}
+
+.header p {
+  margin-top: 5px;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Upload Section */
+.upload-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+.upload-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.upload-container h2 {
+  text-align: center;
+  color: #3a2f0b;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+select,
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.upload-btn {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #b8860b;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: #a57908;
+}
+
+/* Preview */
+.preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview video,
+.preview audio,
+.preview img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Display Section */
+.display-section {
+  padding: 40px 20px;
+}
+
+.section {
+  margin-bottom: 50px;
+}
+
+.section h3 {
+  color: #3a2f0b;
+  margin-bottom: 15px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.content-grid video,
+.content-grid audio,
+.content-grid img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.content-grid p {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .upload-container {
+    padding: 20px;
+  }
+}

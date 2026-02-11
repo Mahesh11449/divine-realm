@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divine Realm - Upload</title>
+  <link rel="stylesheet" href="../css/upload.css">
+  <script defer src="../js/upload.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <h1>🕉 Divine Realm</h1>
+    <p>Share your divine videos, audios, images, or scripts</p>
+  </header>
+
+  <!-- Upload Form -->
+  <section class="upload-section">
+    <div class="upload-container">
+      <h2>Upload Your Divine Contribution</h2>
+
+      <form id="uploadForm">
+        <label for="sectionSelect">Choose Section:</label>
+        <select id="sectionSelect" required>
+          <option value="">-- Select Section --</option>
+          <option value="puranas">Puranas</option>
+          <option value="avatharas">Avatars</option>
+          <option value="stories">Stories</option>
+          <option value="others">Vedas</option>
+        </select>
+
+        <label for="fileInput">Choose File:</label>
+        <input type="file" id="fileInput" accept="video/*,audio/*,image/*,.pdf,.txt,.doc,.docx" required>
+
+        <div id="previewArea" class="preview"></div>
+
+        <button type="submit" class="upload-btn">Upload</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Display Sections -->
+  <section class="display-section">
+    <div class="section" id="puranas">
+      <h3>📜 Puranas</h3>
+      <div class="content-grid"></div>
+    </div>
+
+    <div class="section" id="avatharas">
+      <h3>🕉 Avatars</h3>
+      <div class="content-grid"></div>
+    </div>
+
+    <div class="section" id="stories">
+      <h3>📖 Stories</h3>
+      <div class="content-grid"></div>
+    </div>
+
+    <div class="section" id="others">
+      <h3>📜 Vedas</h3>
+      <div class="content-grid"></div>
+    </div>
+  </section>
+
+</body>
+</html>
