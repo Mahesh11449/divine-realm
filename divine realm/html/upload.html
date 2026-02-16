@@ -4,8 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Divine Realm - Upload</title>
-  <link rel="stylesheet" href="../css/upload.css">
-  <script defer src="../js/upload.js"></script>
+  <style>
+    /* Keep all your existing CSS unchanged */
+    body { font-family: 'Arial', sans-serif; background-color: #fff8dc; margin: 0; padding: 0; color: #5a3e1b; }
+    h1,h2,h3{ color:#b08900;}
+    .header{text-align:center;padding:20px;background-color:#fff3cc;}
+    .upload-section{padding:20px;max-width:600px;margin:auto;}
+    form label{display:block;margin-top:10px;font-weight:bold;}
+    form input,form select,form textarea,form button{width:100%;margin-top:5px;padding:8px;border-radius:5px;border:1px solid #b08900;box-sizing:border-box;}
+    form button.upload-btn{margin-top:15px;background-color:#b08900;color:#fff8dc;border:none;cursor:pointer;}
+    form button.upload-btn:hover{background-color:#a67c00;}
+    .display-section{padding:20px;max-width:1000px;margin:auto;}
+    .content-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:15px;margin-top:10px;}
+    .content-card{border:1px solid #ccc;border-radius:8px;padding:10px;background:#fffbe6;box-shadow:2px 2px 8px rgba(0,0,0,0.1);}
+    .content-card h4{margin:0 0 5px 0;color:#b08900;}
+    .content-card p{font-size:0.9rem;color:#5a3e1b;}
+    .content-card a{display:block;margin-top:5px;color:#0056b3;text-decoration:underline;}
+    .subsection-label{display:block;margin-top:5px;font-size:0.8rem;color:#a67c00;}
+    .subSelectWrapper{display:none;}
+  </style>
 </head>
 <body>
 
@@ -27,15 +44,88 @@
           <option value="puranas">Puranas</option>
           <option value="avatharas">Avatars</option>
           <option value="stories">Stories</option>
-          <option value="others">Vedas</option>
+          <option value="vedas">Vedas</option>
         </select>
 
-        <label for="fileInput">Choose File:</label>
-        <input type="file" id="fileInput" accept="video/*,audio/*,image/*,.pdf,.txt,.doc,.docx" required>
+        <div class="subSelectWrapper" id="puranasWrapper">
+          <label for="puranasSelect">Select Purana:</label>
+          <select id="puranasSelect">
+            <option value="">-- Select Purana --</option>
+            <option value="brahma">Brahma Purana</option>
+            <option value="padma">Padma Purana</option>
+            <option value="vishnu">Vishnu Purana</option>
+            <option value="shiva">Shiva Purana</option>
+            <option value="bhagavata">Bhagavata Purana</option>
+            <option value="markandeya">Markandeya Purana</option>
+            <option value="agni">Agni Purana</option>
+            <option value="brahmanda">Brahmanda Purana</option>
+            <option value="brahmarvaivarta">Brahmavaivarta Purana</option>
+            <option value="linga">Linga Purana</option>
+            <option value="varaha">Varaha Purana</option>
+            <option value="skanda">Skanda Purana</option>
+            <option value="matsya">Matsya Purana</option>
+            <option value="narada">Narada Purana</option>
+            <option value="harivamsa">Harivamsa Purana</option>
+            <option value="bhavishya">Bhavishya Purana</option>
+            <option value="vayu">Vayu Purana</option>
+            <option value="brahmaraja">Brahmaraja Purana</option>
+          </select>
+        </div>
 
-        <div id="previewArea" class="preview"></div>
+        <div class="subSelectWrapper" id="avatharasWrapper">
+          <label for="avatharasSelect">Select Avatar:</label>
+          <select id="avatharasSelect">
+            <option value="">-- Select Avatar --</option>
+            <option value="krishna">Lord Krishna</option>
+            <option value="rama">Lord Rama</option>
+            <option value="narasimha">Lord Narasimha</option>
+            <option value="buddha">Lord Buddha</option>
+            <option value="parashurama">Parashurama</option>
+            <option value="varaha">Varaha</option>
+            <option value="vamana">Vamana</option>
+            <option value="ramanavami">Ramanavami</option>
+            <option value="mahavishnu">Mahavishnu</option>
+            <option value="other-avatar">Other Avatars</option>
+          </select>
+        </div>
 
-        <button type="submit" class="upload-btn">Upload</button>
+        <div class="subSelectWrapper" id="storiesWrapper">
+          <label for="storiesSelect">Stories:</label>
+          <select id="storiesSelect">
+            <option value="stories">Stories</option>
+          </select>
+        </div>
+
+        <div class="subSelectWrapper" id="vedasWrapper">
+          <label for="vedasSelect">Select Veda:</label>
+          <select id="vedasSelect">
+            <option value="">-- Select Veda --</option>
+            <option value="rigveda">Rigveda</option>
+            <option value="samaveda">Samaveda</option>
+            <option value="yajurveda">Yajurveda</option>
+            <option value="atharvaveda">Atharvaveda</option>
+          </select>
+        </div>
+
+        <label for="typeSelect">Content Type:</label>
+        <select id="typeSelect" required>
+          <option value="">-- Select Type --</option>
+          <option value="video">Video Link</option>
+          <option value="audio">Audio Link</option>
+          <option value="image">Image Link</option>
+          <option value="document">Document Link</option>
+        </select>
+
+        <label for="titleInput">Title:</label>
+        <input type="text" id="titleInput" placeholder="Enter Title" required>
+
+        <label for="descInput">Description:</label>
+        <textarea id="descInput" placeholder="Write short description..." required></textarea>
+
+        <label for="linkInput">Paste Link:</label>
+        <input type="url" id="linkInput" placeholder="https://example.com" required>
+
+        <button type="submit" class="upload-btn">Add Content</button>
       </form>
     </div>
   </section>
@@ -46,22 +136,114 @@
       <h3>📜 Puranas</h3>
       <div class="content-grid"></div>
     </div>
-
     <div class="section" id="avatharas">
       <h3>🕉 Avatars</h3>
       <div class="content-grid"></div>
     </div>
-
     <div class="section" id="stories">
       <h3>📖 Stories</h3>
       <div class="content-grid"></div>
     </div>
-
-    <div class="section" id="others">
+    <div class="section" id="vedas">
       <h3>📜 Vedas</h3>
       <div class="content-grid"></div>
     </div>
   </section>
+
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, setDoc, doc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // Firebase config (replace with your config)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAs9decALsnbNFjLXKvWYgv4ZlYknXvCHI",
+      authDomain: "divine-realm-d2f94.firebaseapp.com",
+      projectId: "divine-realm-d2f94",
+      storageBucket: "divine-realm-d2f94.appspot.com",
+      messagingSenderId: "479159885364",
+      appId: "1:479159885364:web:d51c75945b54d0cbb4f461"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const sectionSelect = document.getElementById('sectionSelect');
+      const uploadForm = document.getElementById('uploadForm');
+
+      const wrappers = {
+        puranas: document.getElementById('puranasWrapper'),
+        avatharas: document.getElementById('avatharasWrapper'),
+        stories: document.getElementById('storiesWrapper'),
+        vedas: document.getElementById('vedasWrapper')
+      };
+
+      const displaySections = {
+        puranas: document.getElementById('puranas'),
+        avatharas: document.getElementById('avatharas'),
+        stories: document.getElementById('stories'),
+        vedas: document.getElementById('vedas')
+      };
+
+      // Handle section change
+      sectionSelect.addEventListener('change', () => {
+        Object.values(wrappers).forEach(w => { w.style.display = 'none'; w.querySelector('select').required = false; });
+        const selected = sectionSelect.value;
+        if (wrappers[selected]) { wrappers[selected].style.display = 'block'; wrappers[selected].querySelector('select').required = true; }
+        Object.values(displaySections).forEach(sec => sec.style.display = 'none');
+        if (displaySections[selected]) displaySections[selected].style.display = 'block';
+      });
+
+      // Upload content
+      uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const section = sectionSelect.value;
+        let subsection = '';
+        if(section==='puranas') subsection = document.getElementById('puranasSelect').value;
+        if(section==='avatharas') subsection = document.getElementById('avatharasSelect').value;
+        if(section==='stories') subsection = 'Stories';
+        if(section==='vedas') subsection = document.getElementById('vedasSelect').value;
+        const type = document.getElementById('typeSelect').value;
+        const title = document.getElementById('titleInput').value.trim();
+        const desc = document.getElementById('descInput').value.trim();
+        const link = document.getElementById('linkInput').value.trim();
+        if(!section || !subsection || !type || !title || !desc || !link) return alert("Please fill all required fields!");
+
+        // Save to Firestore
+        const docRef = doc(db, 'contents', `${section}_${subsection}_${title}`);
+        await setDoc(docRef, { section, subsection, type, title, desc, link });
+        alert(`Content added to ${section} → ${subsection}`);
+        uploadForm.reset();
+        Object.values(wrappers).forEach(w => w.style.display = 'none');
+        loadContents(); // Refresh displayed content
+      });
+
+      // Load all contents from Firestore
+      async function loadContents() {
+        const querySnapshot = await getDocs(collection(db,'contents'));
+        // Clear all grids
+        Object.values(displaySections).forEach(sec => sec.querySelector('.content-grid').innerHTML='');
+        querySnapshot.forEach(docSnap => {
+          const data = docSnap.data();
+          const targetDiv = document.querySelector(`#${data.section} .content-grid`);
+          if(targetDiv){
+            const card = document.createElement('div');
+            card.className='content-card';
+            card.innerHTML=`
+              <h4>${data.title}</h4>
+              <p>${data.desc}</p>
+              <a href="${data.link}" target="_blank">Open ${data.type}</a>
+              <span class="subsection-label">${data.subsection}</span>
+            `;
+            targetDiv.appendChild(card);
+          }
+        });
+      }
+
+      loadContents(); // initial load
+    });
+  </script>
 
 </body>
 </html>

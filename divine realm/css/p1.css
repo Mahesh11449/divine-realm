@@ -101,6 +101,13 @@ body.divine-bg {
 .redirect a:hover {
   color: #a78f50;
 }
+.link{
+  color: #bfa56a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
 
 /* Responsive adjustments */
 @media (max-width: 450px) {
@@ -116,3 +123,4 @@ body.divine-bg {
     font-size: 1rem;
   }
 }
+

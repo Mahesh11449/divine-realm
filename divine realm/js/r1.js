@@ -1,30 +1,51 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const registerForm = document.getElementById('registerForm');
+const API_URL = "http://localhost:5000";
 
-  registerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
 
-    const name = document.getElementById('regName').value.trim();
-    const email = document.getElementById('regEmail').value.trim();
-    const password = document.getElementById('regPassword').value.trim();
-    const confirmPassword = document.getElementById('confirmPassword').value.trim();
+  const form = document.getElementById("registerForm");
 
-    if (!name || !email || !password || !confirmPassword) {
-      alert('All fields are required.');
-      return;
-    }
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // prevent page reload
 
-    if (password.length < 6) {
-      alert('Password must be at least 6 characters.');
-      return;
-    }
+    const name = document.getElementById("regName").value.trim();
+    const email = document.getElementById("regEmail").value.trim();
+    const password = document.getElementById("regPassword").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
 
+    // 🔎 Basic validation
     if (password !== confirmPassword) {
-      alert('Passwords do not match!');
+      alert("Passwords do not match ❌");
       return;
     }
 
-    alert('Registration successful! Redirecting to home page...');
-    window.location.href = 'divine realm/html/h1.html';
+    try {
+      const response = await fetch(`${API_URL}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || "Signup failed ❌");
+        return;
+      }
+
+      alert("Registration successful ✅");
+
+      // Optional: Redirect to login page
+      window.location.href = "p1.html";
+
+    } catch (error) {
+      console.error(error);
+      alert("Server error ❌");
+    }
   });
+
 });

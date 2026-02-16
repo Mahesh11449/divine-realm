@@ -24,28 +24,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Redirect mapping (includes upload)
+  // Mapping for redirects (fallback) and local content toggles
   const sections = {
     puranas: '/divine realm/html/pp1.html',
     vedas:   '/divine realm/html/vedas.html',
+    avatharas: '/divine realm/html/avatharas.html',
     avatars: '/divine realm/html/avatharas.html',
     stories: '/divine realm/html/stories.html',
-    upload:  '/divine realm/html/upload.html'   // <-- Upload redirect
+    upload:  '/divine realm/html/upload.html'
   };
+
+  const contentSections = document.querySelectorAll('.grid-section');
+  const closeBtn = document.getElementById('closeContent');
 
   Object.keys(sections).forEach(id => {
     const el = document.getElementById(id);
     if (el) {
       el.addEventListener('click', () => {
-        // close menu nicely before redirecting
+        // close menu
         sideMenu.classList.remove('active');
         menuBtn.setAttribute('aria-expanded', 'false');
 
-        // small delay so user sees menu close (optional)
-        setTimeout(() => {
-          window.location.href = sections[id];
-        }, 120);
+        const localId = id + '-section';
+        const localEl = document.getElementById(localId);
+
+        if (localEl) {
+          // hide others and show selected
+          contentSections.forEach(s => s.hidden = true);
+          localEl.hidden = false;
+          setTimeout(() => localEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+        } else {
+          // fallback to redirect if no local section exists
+          setTimeout(() => {
+            window.location.href = sections[id];
+          }, 120);
+        }
       });
     }
   });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      contentSections.forEach(s => s.hidden = true);
+    });
+  }
 });

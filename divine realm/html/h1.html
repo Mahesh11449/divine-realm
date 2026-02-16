@@ -4,29 +4,209 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Divine Realm - Home</title>
-  <link rel="stylesheet" href="../css/h1.css">
-  <script defer src="../js/h1.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fff8dc; /* light yellow / light gold */
+      margin: 0;
+      padding: 0;
+      color: #5a3e1b; /* dark golden brown text */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Top bar for Explore + Account */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px 15px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #fff3cc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1100;
+    }
+
+    .menu-btn {
+      background-color: #fff3cc;
+      border: none;
+      padding: 10px 15px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Account section */
+    .account-section {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+
+    /* Profile pic container */
+    .profile-pic-container {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      margin-right: 8px;
+    }
+
+    .profile-pic-container img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid #b08900;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Pencil edit icon */
+    .edit-icon {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      background-color: #b08900;
+      color: #fff8dc;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid #fff8dc;
+    }
+
+    .account-dropdown {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      background-color: #fff3cc;
+      border: 1px solid #b08900;
+      border-radius: 5px;
+      display: none;
+      min-width: 160px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1200;
+    }
+
+    .account-dropdown a {
+      display: block;
+      padding: 10px 15px;
+      border-bottom: 1px solid #f0e1a0;
+    }
+
+    .account-dropdown a:hover {
+      background-color: #ffe599;
+    }
+
+    /* Side menu */
+    .side-menu {
+      background-color: #fff3cc; /* elegant light gold */
+      width: 220px;
+      position: fixed;
+      top: 0;
+      left: -220px;
+      height: 100%;
+      padding: 1rem;
+      transition: left 0.3s ease;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .side-menu h2 {
+      margin-top: 0;
+      color: #b08900;
+    }
+
+    .side-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .side-menu li {
+      padding: 10px 0;
+      cursor: pointer;
+      border-bottom: 1px solid #f0e1a0;
+      transition: background 0.2s;
+    }
+
+    .side-menu li:hover {
+      background-color: #ffe599;
+    }
+
+    /* Hero section */
+    .hero {
+      padding: 100px 20px 20px 20px;
+      text-align: center;
+    }
+
+    .hero-image img {
+      max-width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      color: #b08900;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 20px auto 0 auto;
+      color: #5a3e1b;
+    }
+  </style>
 </head>
-<body class="divine-bg">
+<body>
 
-  <!-- Side Explore Menu -->
-  <nav id="sideMenu" class="side-menu" aria-label="Explore menu">
-    <h2>Explore</h2>
-    <ul>
-      <li class="menu-link" id="puranas" role="button" tabindex="0">Puranas</li>
-      <li class="menu-link" id="vedas" role="button" tabindex="0">Vedas</li>
-      <li class="menu-link" id="avatharas" role="button" tabindex="0">Avatars</li>
-      <li class="menu-link" id="stories" role="button" tabindex="0">Stories</li>
-      <li class="menu-link" id="upload" role="button" tabindex="0">Upload</li> <!-- new -->
-    </ul>
-  </nav>
+  <!-- Top bar with Explore + Account -->
+  <div class="top-bar">
+    <button id="menuBtn" class="menu-btn" aria-expanded="false">☰ Explore</button>
 
-  
-  <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="sideMenu">☰ Explore</button>
+    <!-- Account Section -->
+    <div class="account-section" id="accountSection">
+      <div class="profile-pic-container">
+        <img src="../thumbnails/profile-pic.png" alt="Profile Picture" id="profilePic">
+        <div class="edit-icon" id="editPic">&#9998;</div>
+      </div>
+      <span>Account</span>
+      <div class="account-dropdown" id="accountDropdown">
+        <a href="profile.html">Profile</a>
+        <a href="settings.html">Settings</a>
+        <a href="logout.html">Logout</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+
+ <!-- Side Explore Menu -->
+<nav id="sideMenu" class="side-menu" aria-label="Explore menu">
+  <h2>Explore</h2>
+  <ul>
+    <li class="menu-link" data-url="/divine realm/html/pp1.html">Puranas</li>
+    <li class="menu-link" data-url="/divine realm/html/vedas.html">Vedas</li>
+    <li class="menu-link" data-url="/divine realm/html/avatharas.html">Avatars</li>
+    <li class="menu-link" data-url="/divine realm/html/stories.html">Stories</li>
+    <li class="menu-link" data-url="/divine realm/html/upload.html">Upload</li>
+  </ul>
+</nav>
 
 
   <main class="hero" role="main">
-    
     <div class="hero-image" aria-hidden="true">
       <img src="../thumbnails/p1.images/images.jpeg" alt="Divine Realm image" />
     </div>
@@ -40,9 +220,105 @@
         of the gods inspire your heart, uplift your mind, and awaken your spiritual consciousness.
       </p>
     </div>
-
-    
   </main>
+
+  
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+
+  const token = localStorage.getItem("token");
+
+  // 🚨 If no token → redirect to login
+  if (!token) {
+    window.location.href = "p1.html";
+    return;
+  }
+
+  try {
+    const response = await fetch("http://127.0.0.1:5000/profile", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("Invalid token");
+    }
+
+    const data = await response.json();
+
+    // ✅ Show welcome message
+    const accountSection = document.getElementById("accountSection");
+
+    const welcomeText = document.createElement("span");
+    welcomeText.textContent = " | Welcome, " + data.email;
+    welcomeText.style.fontWeight = "bold";
+    welcomeText.style.marginLeft = "8px";
+
+    accountSection.appendChild(welcomeText);
+
+  } catch (error) {
+    console.error("Authentication error:", error);
+    localStorage.removeItem("token");
+    window.location.href = "p1.html";
+  }
+});
+
+
+/* ================= DROPDOWN TOGGLE ================= */
+
+const accountSection = document.getElementById("accountSection");
+const accountDropdown = document.getElementById("accountDropdown");
+
+accountSection.addEventListener("click", (e) => {
+  e.stopPropagation();
+  accountDropdown.style.display =
+    accountDropdown.style.display === "block" ? "none" : "block";
+});
+
+// Close dropdown if clicked outside
+document.addEventListener("click", () => {
+  accountDropdown.style.display = "none";
+});
+
+
+/* ================= LOGOUT ================= */
+
+// Change logout link behavior
+document.querySelector("a[href='logout.html']").addEventListener("click", function (e) {
+  e.preventDefault();
+  localStorage.removeItem("token");
+  alert("Logged out successfully");
+  window.location.href = "p1.html";
+});
+
+
+/* ================= SIDE MENU ================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const sideMenu = document.getElementById("sideMenu");
+
+menuBtn.addEventListener("click", () => {
+  if (sideMenu.style.left === "0px") {
+    sideMenu.style.left = "-220px";
+    menuBtn.setAttribute("aria-expanded", "false");
+  } else {
+    sideMenu.style.left = "0px";
+    menuBtn.setAttribute("aria-expanded", "true");
+  }
+});
+
+
+// Navigate from side menu
+document.querySelectorAll(".menu-link").forEach(item => {
+  item.addEventListener("click", () => {
+    window.location.href = item.dataset.url;
+  });
+});
+</script>
+
+
 
 </body>
 </html>

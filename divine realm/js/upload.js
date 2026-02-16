@@ -1,76 +1,48 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const uploadForm = document.getElementById('uploadForm');
-  const fileInput = document.getElementById('fileInput');
-  const sectionSelect = document.getElementById('sectionSelect');
-  const previewArea = document.getElementById('previewArea');
-
-  // Preview selected file
-  fileInput.addEventListener('change', () => {
-    const file = fileInput.files[0];
-    previewArea.innerHTML = '';
-
-    if (!file) return;
-
-    const fileType = file.type;
-    let previewElement;
-
-    if (fileType.startsWith('video/')) {
-      previewElement = document.createElement('video');
-      previewElement.controls = true;
-      previewElement.src = URL.createObjectURL(file);
-    } else if (fileType.startsWith('audio/')) {
-      previewElement = document.createElement('audio');
-      previewElement.controls = true;
-      previewElement.src = URL.createObjectURL(file);
-    } else if (fileType.startsWith('image/')) {
-      previewElement = document.createElement('img');
-      previewElement.src = URL.createObjectURL(file);
-    } else {
-      previewElement = document.createElement('p');
-      previewElement.textContent = `File selected: ${file.name}`;
-    }
-
-    previewArea.appendChild(previewElement);
-  });
-
-  // Handle Upload
-  uploadForm.addEventListener('submit', (e) => {
+document.getElementById("uploadForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const file = fileInput.files[0];
-    const section = sectionSelect.value;
+    const sectionValue = document.getElementById("sectionSelect").value;
+    const type = document.getElementById("typeSelect").value;
+    const title = document.getElementById("titleInput").value;
+    const desc = document.getElementById("descInput").value;
+    const link = document.getElementById("linkInput").value;
 
-    if (!file || !section) {
-      alert('Please select both file and section.');
-      return;
+    if (!sectionValue) {
+        alert("Please select a section");
+        return;
     }
 
-    const fileType = file.type;
-    const targetGrid = document.querySelector(`#${section} .content-grid`);
-    let mediaElement;
+    // Get correct section grid
+    const section = document.getElementById(sectionValue);
+    const contentGrid = section.querySelector(".content-grid");
 
-    if (fileType.startsWith('video/')) {
-      mediaElement = document.createElement('video');
-      mediaElement.controls = true;
-      mediaElement.src = URL.createObjectURL(file);
-    } else if (fileType.startsWith('audio/')) {
-      mediaElement = document.createElement('audio');
-      mediaElement.controls = true;
-      mediaElement.src = URL.createObjectURL(file);
-    } else if (fileType.startsWith('image/')) {
-      mediaElement = document.createElement('img');
-      mediaElement.src = URL.createObjectURL(file);
-    } else {
-      mediaElement = document.createElement('p');
-      mediaElement.textContent = file.name;
+    // Create card
+    const card = document.createElement("div");
+    card.className = "card";
+
+    let mediaElement = "";
+
+    if (type === "video") {
+        mediaElement = `<iframe src="${link}" frameborder="0" allowfullscreen></iframe>`;
+    } 
+    else if (type === "audio") {
+        mediaElement = `<audio controls src="${link}"></audio>`;
+    } 
+    else if (type === "image") {
+        mediaElement = `<img src="${link}" alt="${title}">`;
+    } 
+    else {
+        mediaElement = `<a href="${link}" target="_blank">Open Document</a>`;
     }
 
-    targetGrid.appendChild(mediaElement);
+    card.innerHTML = `
+        ${mediaElement}
+        <h4>${title}</h4>
+        <p>${desc}</p>
+    `;
 
-    // Reset form and preview
-    uploadForm.reset();
-    previewArea.innerHTML = '';
+    contentGrid.appendChild(card);
 
-    alert('Upload successful! Your file is now visible in the selected section.');
-  });
+    // Clear form
+    document.getElementById("uploadForm").reset();
 });
